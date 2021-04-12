@@ -1,5 +1,7 @@
-const boardUrl =
-  "https://api.trello.com/1/boards/xnylmuKe/cards?key=151437e929004018d0e7d61f28c222aa&token=3a9480e5ef9775d10884da2b99b2c17399c0269447864107a92d2804862afa57";
+import { accessKey, token } from "./trello-creds.js";
+
+const endpoint = "";
+const boardUrl = `https://api.trello.com/1/boards/xnylmuKe/cards?key=${accessKey}&token=${token}`;
 
 export const getTasks = () => {
   fetch(boardUrl)
