@@ -1,9 +1,11 @@
 import { accessKey, token } from "./trello-creds.js";
 
-const endpoint = "";
-const boardUrl = `https://api.trello.com/1/boards/xnylmuKe/cards?key=${accessKey}&token=${token}`;
+const baseUrl = "https://api.trello.com/1";
+const credentials = `?key=${accessKey}&token${token}`;
 
 export const getTasks = () => {
+  const boardUrl = `${baseUrl}/boards/xnylmuKe/cards${credentials}`;
+
   fetch(boardUrl)
     .then((response) => {
       return response.json();
@@ -15,8 +17,9 @@ export const getTasks = () => {
         return { name, id, isCompleted: dueComplete };
       });
 
-      console.log({ filteredItems });
-      setTasks(filteredItems);
-      setLoading(false);
+      return filteredItems;
+      // console.log({ filteredItems });
+      // setTasks(filteredItems);
+      // setLoading(false);
     });
 };

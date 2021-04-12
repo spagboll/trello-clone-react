@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Cards } from "./Cards.js";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <Cards />
       <ul>
         {tasks.map(({ name, id, isCompleted }) => (
           <li key={id}>
