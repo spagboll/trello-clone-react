@@ -14,7 +14,7 @@ export const getTasks = () => {
       console.log(json);
 
       const filteredItems = json.map(({ name, id, dueComplete }) => {
-        return { name, id, isCompleted: dueComplete };
+        return { name, id, dueComplete };
       });
 
       return filteredItems;

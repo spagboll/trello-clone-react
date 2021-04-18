@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Cards } from "./Cards.js";
+import  Cards from "./Cards.js";
 import "./App.css";
 
 function App() {
@@ -19,14 +19,14 @@ function App() {
 
   return (
     <div className="App">
-      <Cards />
-      <ul>
-        {tasks.map(({ name, id, isCompleted }) => (
+      <Cards setLoading={setLoading}/>
+      {/* <ul>
+        {tasks.map(({ name, id, dueComplete }) => (
           <li key={id}>
-            {name} <input type="checkbox" checked={isCompleted} />{" "}
+            {name} <input type="checkbox" checked={dueComplete} />{" "}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
