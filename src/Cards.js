@@ -5,9 +5,9 @@ const Cards = () => {
 
   return (
     <ul>
-      {tasks.map(({ dueComplete, id, name }) => (
+      {tasks.map(({ name, id, dueComplete }) => (
         <li key={id}>
-          {name} <input type="checkbox" checked={dueComplete} />{" "}
+          {name} <input type="checkbox" checked={dueComplete} />
         </li>
       ))}
     </ul>

@@ -3,7 +3,7 @@ import { accessKey, token } from "./trello-creds.js";
 const baseUrl = "https://api.trello.com/1";
 const credentials = `?key=${accessKey}&token=${token}`;
 
-export function getTasks() {
+export const getTasks = () => {
   const boardUrl = `${baseUrl}/boards/xnylmuKe/cards${credentials}`;
 
   let filteredItems = [];
@@ -21,4 +21,6 @@ export function getTasks() {
     });
 
   return filteredItems;
-}
+};
+
+export default getTasks;
