@@ -2,19 +2,18 @@ import { accessKey, token } from "./trello-creds.js";
 
 const baseUrl = "https://api.trello.com/1";
 const credentials = `?key=${accessKey}&token=${token}`;
+const boardUrl = `${baseUrl}/boards/xnylmuKe/cards`;
 
-export const getTasks = () => {
-  const boardUrl = `${baseUrl}/boards/xnylmuKe/cards${credentials}`;
-
+export const getTasks = async () => {
   let filteredItems = [];
 
-  fetch(boardUrl)
+  await fetch(`${boardUrl}${credentials}`)
     .then((response) => {
       return response.json();
     })
     .then((json) => {
-      filteredItems = json.map(({ name, id, dueComplete }) => {
-        return { name, id, dueComplete };
+      filteredItems = json.map(({ name, id, dueComplete: isCompleted }) => {
+        return { name, id, isCompleted };
       });
 
       console.log({ filteredItems });
@@ -23,4 +22,15 @@ export const getTasks = () => {
   return filteredItems;
 };
 
-export default getTasks;
+export const updateDueComplete = async (task) => {
+  await fetch(
+    `${baseUrl}/cards/${task.id}${credentials}&dueComplete=${task.isCompleted}`,
+    { method: "PUT" }
+  ).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      console.log({ response });
+    }
+  });
+};

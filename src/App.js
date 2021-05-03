@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getTasks } from "./TrelloApiClient";
+import React from "react";
 import Cards from "./Cards.js";
 import "./App.css";
 

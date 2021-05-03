@@ -1,13 +1,40 @@
-import { getTasks } from "./TrelloApiClient";
+import React, { useEffect, useState } from "react";
+import { getTasks, updateDueComplete } from "./TrelloApiClient";
 
 const Cards = () => {
-  let tasks = getTasks();
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const doGetTasks = async () => {
+      const tasks = await getTasks();
+      setTasks(tasks);
+    };
+
+    doGetTasks();
+  }, []);
+
+  const handleCheckboxChange = (id) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.isCompleted = !task.isCompleted;
+          updateDueComplete(task);
+        }
+        return task;
+      })
+    );
+  };
 
   return (
     <ul>
-      {tasks.map(({ name, id, dueComplete }) => (
+      {tasks.map(({ name, id, isCompleted }) => (
         <li key={id}>
-          {name} <input type="checkbox" checked={dueComplete} />
+          {name}{" "}
+          <input
+            type="checkbox"
+            onChange={() => handleCheckboxChange(id)}
+            checked={isCompleted}
+          />
         </li>
       ))}
     </ul>
