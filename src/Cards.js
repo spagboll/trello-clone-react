@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTasks, updateDueComplete } from "./TrelloApiClient";
-import style from "./css/Cards.css";
+import style from "./css/Cards.module.css";
 
 const Cards = () => {
   const [tasks, setTasks] = useState([]);
@@ -32,7 +32,7 @@ const Cards = () => {
   };
 
   return (
-    <ul>
+    <ul className={style.card.ul}>
       {tasks.map(({ name, id, isCompleted }) => (
         <li key={id} className={style.cardDefault}>
           {name}{" "}

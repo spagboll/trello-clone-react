@@ -1,0 +1,9 @@
+.card.ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+.cardDefault {
+  border: 1px solid black;
+  display: table;
+}
