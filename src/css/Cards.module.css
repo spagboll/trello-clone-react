@@ -5,5 +5,5 @@
 
 .cardDefault {
   border: 1px solid black;
-  display: table;
+  /* display: table; */
 }
