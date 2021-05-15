@@ -45,6 +45,8 @@ const Cards = () => {
     e.preventDefault();
   };
 
+  const displayButtonText = (buttonId) => {};
+
   return (
     <form onSubmit={handleSubmit}>
       <ul className={style.card.ul}>
