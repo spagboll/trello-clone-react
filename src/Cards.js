@@ -16,40 +16,50 @@ const Cards = () => {
     doGetTasks();
   }, []);
 
-  const handleCheckboxChange = (id) => {
-    setIsLoading(true);
-    console.log({ isLoading });
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          task.isCompleted = !task.isCompleted;
-          updateDueComplete(task);
-        }
-        setIsLoading(false);
-        console.log({ isLoading });
-        return task;
-      })
-    );
+  // const handleCheckboxChange = (id) => {
+  //   setIsLoading(true);
+  //   console.log({ isLoading });
+  //   setTasks(
+  //     tasks.map((task) => {
+  //       if (task.id === id) {
+  //         task.isCompleted = !task.isCompleted;
+  //         updateDueComplete(task);
+  //       }
+  //       setIsLoading(false);
+  //       console.log({ isLoading });
+  //       return task;
+  //     })
+  //   );
+  // };
+
+  const handleEditOnClick = (id) => {
+    if (editable) {
+      setEditable(false);
+    } else {
+      setEditable(true);
+      return <input key={id}>hello</input>;
+    }
   };
 
-  const handleEditOnClick = () => {
-    setEditable(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <ul className={style.card.ul}>
-      {tasks.map(({ name, id, isCompleted }) => (
-        <li key={id} className={style.cardDefault}>
-          {name}
-          {
-            <button hidden={editable} onClick={handleEditOnClick}>
-              Edit
-            </button>
-          }
-          {<button hidden={!editable}>Save</button>}
-        </li>
-      ))}
-    </ul>
+    <form onSubmit={handleSubmit}>
+      <ul className={style.card.ul}>
+        {tasks.map(({ name, id, isCompleted }) => (
+          <li key={id} className={style.cardDefault}>
+            {name}
+            {
+              <button key={id} onClick={() => handleEditOnClick(id)}>
+                {editable ? "Save" : "Edit"}
+              </button>
+            }
+          </li>
+        ))}
+      </ul>
+    </form>
   );
 };
 
