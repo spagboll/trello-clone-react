@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { getTasks, updateDueComplete } from "./TrelloApiClient";
+import { getCards, updateDueComplete } from "./TrelloApiClient";
+import Card from "./Card";
 import style from "./css/Cards.module.css";
 
 const Cards = () => {
-  const [tasks, setTasks] = useState([]);
+  const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [editable, setEditable] = useState(false);
 
   useEffect(() => {
-    const doGetTasks = async () => {
-      const tasks = await getTasks();
-      setTasks(tasks);
+    const doGetcards = async () => {
+      const cards = await getCards();
+      setCards(cards);
     };
 
-    doGetTasks();
+    doGetcards();
   }, []);
 
   // const handleCheckboxChange = (id) => {
   //   setIsLoading(true);
   //   console.log({ isLoading });
-  //   setTasks(
-  //     tasks.map((task) => {
+  //   setcards(
+  //     cards.map((task) => {
   //       if (task.id === id) {
   //         task.isCompleted = !task.isCompleted;
   //         updateDueComplete(task);
@@ -37,7 +38,6 @@ const Cards = () => {
       setEditable(false);
     } else {
       setEditable(true);
-      return <input key={id}>hello</input>;
     }
   };
 
@@ -50,15 +50,16 @@ const Cards = () => {
   return (
     <form onSubmit={handleSubmit}>
       <ul className={style.card.ul}>
-        {tasks.map(({ name, id, isCompleted }) => (
-          <li key={id} className={style.cardDefault}>
-            {name}
-            {
-              <button key={id} onClick={() => handleEditOnClick(id)}>
-                {editable ? "Save" : "Edit"}
-              </button>
-            }
-          </li>
+        {cards.map(({ name, id, isCompleted }) => (
+          <Card name={name} id={id} editable={editable} />
+          // <li key={id} className={style.cardDefault}>
+          //   {name}
+          //   {
+          //     <button key={id} onClick={() => handleEditOnClick(id)}>
+          //       {editable ? "Save" : "Edit"}
+          //     </button>
+          //   }
+          // </li>
         ))}
       </ul>
     </form>

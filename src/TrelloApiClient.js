@@ -4,7 +4,7 @@ const baseUrl = "https://api.trello.com/1";
 const credentials = `?key=${accessKey}&token=${token}`;
 const boardUrl = `${baseUrl}/boards/xnylmuKe/cards`;
 
-export const getTasks = async () => {
+export const getCards = async () => {
   let filteredItems = [];
 
   await fetch(`${boardUrl}${credentials}`)
