@@ -6,7 +6,6 @@ import style from "./css/Cards.module.css";
 const Cards = () => {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [editable, setEditable] = useState(false);
 
   useEffect(() => {
     const doGetcards = async () => {
@@ -30,39 +29,26 @@ const Cards = () => {
   //       console.log({ isLoading });
   //       return task;
   //     })
-  //   );
+  //   );}
   // };
 
-  const handleEditOnClick = (id) => {
-    if (editable) {
-      setEditable(false);
-    } else {
-      setEditable(true);
-    }
+  const handleCardChange = (id, name) => {
+    setCards((cards) =>
+      cards.map((card) => {
+        if (card.id === id) {
+          card.name = name;
+        }
+        return card;
+      })
+    );
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const displayButtonText = (buttonId) => {};
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul className={style.card.ul}>
-        {cards.map(({ name, id, isCompleted }) => (
-          <Card name={name} id={id} editable={editable} />
-          // <li key={id} className={style.cardDefault}>
-          //   {name}
-          //   {
-          //     <button key={id} onClick={() => handleEditOnClick(id)}>
-          //       {editable ? "Save" : "Edit"}
-          //     </button>
-          //   }
-          // </li>
-        ))}
-      </ul>
-    </form>
+    <ul className={style.card.ul}>
+      {cards.map(({ name, id, isCompleted }) => (
+        <Card key={id} name={name} id={id} onChange={handleCardChange} />
+      ))}
+    </ul>
   );
 };
 

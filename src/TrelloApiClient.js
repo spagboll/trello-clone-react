@@ -34,3 +34,15 @@ export const updateDueComplete = async (task) => {
     }
   });
 };
+
+export const updateCardName = async (id, newName) => {
+  await fetch(`${baseUrl}/cards/${id}${credentials}&name=${newName}`, {
+    method: "PUT",
+  }).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      console.log({ response });
+    }
+  });
+};
