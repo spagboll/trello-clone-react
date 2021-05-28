@@ -6,6 +6,10 @@ const Card = ({ id, name, onChange }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardName, setCardName] = useState(name);
 
+  const handleCancelOnClick = () => {
+    setIsEditing(false);
+  };
+
   const handleEditOnClick = () => {
     setIsEditing((isEditing) => !isEditing);
   };
@@ -34,6 +38,9 @@ const Card = ({ id, name, onChange }) => {
               onChange={(event) => setCardName(event.target.value)}
             />{" "}
             <button type="submit">Save</button>{" "}
+            <button type="button" onClick={handleCancelOnClick}>
+              Cancel
+            </button>
           </>
         ) : (
           <>
