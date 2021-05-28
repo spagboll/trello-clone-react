@@ -12,7 +12,11 @@ const Card = ({ id, name, onChange }) => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    await updateCardName(id, cardName);
+
+    if (name !== cardName) {
+      console.log("hit validation");
+      await updateCardName(id, cardName);
+    }
     setIsEditing(false);
     onChange(id, cardName);
   };
@@ -25,6 +29,7 @@ const Card = ({ id, name, onChange }) => {
             {" "}
             <input
               type="text"
+              name="cardNameInput"
               value={cardName}
               onChange={(event) => setCardName(event.target.value)}
             />{" "}

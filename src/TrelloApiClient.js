@@ -40,6 +40,7 @@ export const updateCardName = async (id, newName) => {
     method: "PUT",
   }).then((response) => {
     if (response.status === 200) {
+      console.log("Updated card name");
       return response.json();
     } else {
       console.log({ response });
