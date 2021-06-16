@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCards, updateDueComplete } from "./TrelloApiClient";
 import Card from "./Card";
-import style from "./css/Cards.module.css";
 
 const Cards = () => {
   const [cards, setCards] = useState([]);
@@ -44,7 +43,7 @@ const Cards = () => {
   };
 
   return (
-    <ul className={style.card.ul}>
+    <ul>
       {cards.map(({ name, id, isCompleted }) => (
         <Card key={id} name={name} id={id} onChange={handleCardChange} />
       ))}

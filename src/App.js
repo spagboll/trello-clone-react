@@ -1,13 +1,7 @@
-import React from "react";
-import Cards from "./Cards.js";
-import "./App.css";
+import Cards from "./Cards";
 
 function App() {
-  return (
-    <div className="App">
-      <Cards />
-    </div>
-  );
+  return <Cards />;
 }
 
 export default App;

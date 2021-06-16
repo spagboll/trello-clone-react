@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import style from "./css/Cards.module.css";
 import { updateCardName } from "./TrelloApiClient";
 
 const Card = ({ id, name, onChange }) => {
@@ -26,28 +25,49 @@ const Card = ({ id, name, onChange }) => {
   };
 
   return (
-    <li className={style.cardDefault}>
+    <li>
       <form onSubmit={handleOnSubmit}>
         {isEditing ? (
           <>
             {" "}
-            <input
-              type="text"
-              name="cardNameInput"
-              value={cardName}
-              onChange={(event) => setCardName(event.target.value)}
-            />{" "}
-            <button type="submit">Save</button>{" "}
-            <button type="button" onClick={handleCancelOnClick}>
-              Cancel
-            </button>
+            <div class="card shadow-lg">
+              <div class="card-body">
+                <input
+                  class="input input-bordered input-sm"
+                  type="text"
+                  name="cardNameInput"
+                  value={cardName}
+                  onChange={(event) => setCardName(event.target.value)}
+                />{" "}
+                <button class="btn btn-success btn-sm" type="submit">
+                  Save
+                </button>{" "}
+                <button
+                  class="btn btn-warning btn-sm"
+                  type="button"
+                  onClick={handleCancelOnClick}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
           </>
         ) : (
           <>
-            {name}
-            <button type="button" key={id} onClick={handleEditOnClick}>
-              Edit
-            </button>
+            <div class="card shadow-lg">
+              <div class="card-body">
+                {" "}
+                <div class="card-title"> {name}</div>
+                <button
+                  class="btn btn-primary btn-xs"
+                  type="button"
+                  key={id}
+                  onClick={handleEditOnClick}
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
           </>
         )}
       </form>
